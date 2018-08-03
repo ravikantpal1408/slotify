@@ -1,5 +1,11 @@
 <?php
-$songQuery = mysqli_query($con, "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
+
+	
+
+
+	
+	
+$songQuery = mysqli_query($con, "SELECT id FROM Songs ORDER BY RAND() LIMIT 10");
 
 $resultArray = array();
 
@@ -13,7 +19,10 @@ $jsonArray = json_encode($resultArray);
 <script>
 
 $(document).ready(function() {
+	
+	
 	var newPlaylist = <?php echo $jsonArray; ?>;
+	//console.log(newPlaylist);
 	audioElement = new Audio();
 	setTrack(newPlaylist[0], newPlaylist, false);
 	updateVolumeProgressBar(audioElement.audio);

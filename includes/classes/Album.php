@@ -1,4 +1,5 @@
 <?php
+	
 	class Album {
 
 		private $con;
@@ -9,9 +10,10 @@
 		private $artworkPath;
 
 		public function __construct($con, $id) {
-			$this->con = $con;
+			
+			$this->con = mysqli_connect("127.0.0.1", "ravi1408", "", "slotify");
 			$this->id = $id;
-
+			
 			$query = mysqli_query($this->con, "SELECT * FROM albums WHERE id='$this->id'");
 			$album = mysqli_fetch_array($query);
 
@@ -40,15 +42,22 @@
 		}
 
 		public function getNumberOfSongs() {
-			$query = mysqli_query($this->con, "SELECT id FROM songs WHERE album='$this->id'");
+			
+			
+			$query = mysqli_query(mysqli_connect("localhost", "ravi1408", "", "slotify"), "SELECT id FROM Songs WHERE album='$this->id'");
+			
+			
 			return mysqli_num_rows($query);
 		}
 
 		public function getSongIds() {
-
-			$query = mysqli_query($this->con, "SELECT id FROM songs WHERE album='$this->id' ORDER BY albumOrder ASC");
+			//$this->con = mysqli_connect("127.0.0.1", "ravi1408", "", "slotify");
+			$query = mysqli_query(mysqli_connect("localhost", "ravi1408", "", "slotify"), "SELECT id FROM Songs WHERE album='$this->id' ORDER BY albumOrder ASC");
 
 			$array = array();
+			
+			
+		
 
 			while($row = mysqli_fetch_array($query)) {
 				array_push($array, $row['id']);
@@ -57,10 +66,6 @@
 			return $array;
 
 		}
-
-
-
-
 
 
 	}
