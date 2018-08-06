@@ -29,6 +29,16 @@
 			<div class="navItem">
 				<span role="link" tabindex="0" onclick="openPage('settings.php')" class="navItemLink"><?php echo $userLoggedIn->getFirstAndLastName(); ?></span>
 			</div>
+			<?php 
+			if($_SESSION["role"]=="admin")
+			{
+				echo "<div class='navItem'>
+					<span role='link' tabindex='0' onclick=openPage('admin.php')  class='navItemLink'>Admin Section</span>
+				</div>";
+			}
+			
+			
+			?>
 		</div>
 
 	</nav>

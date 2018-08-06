@@ -1,10 +1,5 @@
 <?php
 
-	
-
-
-	
-	
 $songQuery = mysqli_query($con, "SELECT id FROM Songs ORDER BY RAND() LIMIT 10");
 
 $resultArray = array();

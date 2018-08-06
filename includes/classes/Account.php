@@ -13,10 +13,10 @@
 
 			$pw = md5($pw);
 
-			$query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
+			$query = mysqli_query($this->con, "SELECT id,username,firstName,lastName,email,signUpDate,profilePic,role FROM users WHERE username='$un' AND password='$pw'");
 
 			if(mysqli_num_rows($query) == 1) {
-				return true;
+				return $query;
 			}
 			else {
 				array_push($this->errorArray, Constants::$loginFailed);
@@ -54,7 +54,7 @@
 			$profilePic = "assets/images/profile-pics/head_emerald.png";
 			$date = date("Y-m-d");
 
-			$result = mysqli_query($this->con, "INSERT INTO users (username , firstName , lastName , email , password , signUpDate , profilePic) VALUES ('$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
+			$result = mysqli_query($this->con, "INSERT INTO users (username , firstName , lastName , email , password , signUpDate , profilePic , role) VALUES ('$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic' ,'user')");
 
 			return $result;
 		}
